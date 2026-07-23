@@ -1,0 +1,158 @@
+/* ============================================
+   Хостелы ЕКБ — стили
+   ============================================ */
+
+:root{
+  --accent:#e85d2f;
+  --accent-dark:#c94a20;
+  --accent-glow:rgba(232,93,47,.55);
+  --dark:#22242a;
+  --gray:#6b6f78;
+  --bg:#f6f4f1;
+  --radius:16px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,Arial,sans-serif;background:var(--bg);color:var(--dark);line-height:1.5}
+img{display:block;max-width:100%}
+
+/* ---------- Шапка ---------- */
+
+header{
+  background:#fff;
+  position:sticky;top:0;z-index:50;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
+}
+.header-inner{
+  max-width:1100px;margin:0 auto;padding:14px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+.logo{font-size:1.25rem;font-weight:800}
+.logo span{color:var(--accent)}
+
+.phone-btn{
+  background:var(--accent);color:#fff;text-decoration:none;
+  padding:10px 20px;border-radius:999px;font-weight:700;font-size:1rem;
+  transition:background .2s, box-shadow .2s;white-space:nowrap;
+  box-shadow:0 0 14px rgba(232,93,47,.45);
+}
+.phone-btn:hover{background:var(--accent-dark);box-shadow:0 0 22px rgba(232,93,47,.75)}
+
+/* ---------- Приветствие ---------- */
+
+.hero{max-width:1100px;margin:28px auto 8px;padding:0 20px}
+.hero h1{font-size:clamp(1.4rem,4vw,2.1rem);font-weight:800}
+.hero p{color:var(--gray);margin-top:6px}
+
+/* ---------- Горизонтальная лента карточек ---------- */
+
+.carousel-wrap{max-width:1100px;margin:18px auto 0;padding:0 20px;position:relative}
+.carousel{
+  display:flex;gap:18px;overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:6px 2px 18px;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+}
+.carousel::-webkit-scrollbar{height:8px}
+.carousel::-webkit-scrollbar-thumb{background:#d8d4cf;border-radius:4px}
+
+.card{
+  flex:0 0 300px;scroll-snap-align:start;
+  position:relative;border-radius:var(--radius);overflow:hidden;
+  height:340px;cursor:pointer;
+  box-shadow:0 4px 16px rgba(0,0,0,.12);
+  transition:transform .25s, box-shadow .25s;
+}
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 0 2px var(--accent-glow), 0 0 28px rgba(232,93,47,.45), 0 12px 28px rgba(0,0,0,.25);
+}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.card:hover img{transform:scale(1.05)}
+
+/* текст поверх фото на градиентной подложке */
+.card-body{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:52px 16px 18px;
+  background:linear-gradient(to top, rgba(12,13,18,.92) 0%, rgba(12,13,18,.65) 55%, transparent 100%);
+  color:#fff;
+}
+.card-body h3{
+  font-size:1.1rem;margin-bottom:4px;
+  text-shadow:0 0 12px rgba(232,93,47,.8), 0 2px 6px rgba(0,0,0,.9);
+}
+.card-body .addr{color:#d5d7dd;font-size:.85rem;margin-bottom:8px;text-shadow:0 1px 4px rgba(0,0,0,.9)}
+
+.price{
+  font-weight:800;color:var(--accent);font-size:1.05rem;
+  text-shadow:0 0 14px rgba(232,93,47,.9), 0 0 30px rgba(232,93,47,.5);
+}
+.price small{color:#c9ccd4;font-weight:400;text-shadow:none}
+.full-body .price small{color:var(--gray)}
+
+/* ---------- Стрелки ленты ---------- */
+
+.arrow{
+  position:absolute;top:44%;transform:translateY(-50%);
+  width:42px;height:42px;border-radius:50%;border:none;cursor:pointer;
+  background:#fff;box-shadow:0 3px 10px rgba(0,0,0,.18);
+  font-size:1.2rem;color:var(--dark);
+  display:flex;align-items:center;justify-content:center;z-index:5;
+}
+.arrow:hover{background:var(--accent);color:#fff}
+.arrow.prev{left:4px}
+.arrow.next{right:4px}
+
+/* ---------- Кнопка «посмотреть больше» ---------- */
+
+.more-wrap{text-align:center;margin:18px 0 46px}
+.more-btn{
+  display:inline-block;background:var(--dark);color:#fff;border:none;cursor:pointer;
+  padding:14px 34px;border-radius:999px;font-size:1rem;font-weight:700;
+  transition:background .2s, box-shadow .2s;
+}
+.more-btn:hover{background:var(--accent);box-shadow:0 0 24px rgba(232,93,47,.65)}
+
+/* ---------- Полный список в колонку ---------- */
+
+.list-section{max-width:900px;margin:0 auto;padding:20px 20px 60px}
+.list-section h2{font-size:1.6rem;margin-bottom:22px;text-align:center}
+
+.hostel-full{
+  background:#fff;border-radius:var(--radius);overflow:hidden;
+  box-shadow:0 4px 16px rgba(0,0,0,.07);margin-bottom:34px;
+  scroll-margin-top:80px; /* чтобы sticky-шапка не перекрывала при переходе по якорю */
+}
+.gallery{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:340px;gap:4px}
+.gallery img{width:100%;height:100%;object-fit:cover;min-width:0;min-height:0}
+.gallery .side{display:grid;grid-template-rows:1fr 1fr;gap:4px;min-height:0}
+
+.full-body{padding:20px 24px 26px}
+.full-body h3{font-size:1.3rem}
+.full-body .addr{color:var(--gray);margin:4px 0 10px}
+.full-body p{color:#3d4048;margin-bottom:14px}
+
+.features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.features span{
+  background:var(--bg);border-radius:999px;padding:6px 14px;font-size:.85rem;color:var(--gray);
+}
+
+.full-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.full-footer .price{font-size:1.3rem}
+
+/* ---------- Подвал ---------- */
+
+footer{background:var(--dark);color:#c9ccd4;text-align:center;padding:34px 20px}
+footer .phone-big{color:#fff;font-size:1.5rem;font-weight:800;text-decoration:none;display:inline-block;margin:8px 0}
+footer .phone-big:hover{color:var(--accent);text-shadow:0 0 18px var(--accent-glow)}
+footer small{display:block;margin-top:12px;color:#8a8e99}
+
+/* ---------- Мобильная версия ---------- */
+
+@media (max-width:640px){
+  .gallery{grid-template-columns:1fr;grid-template-rows:220px 120px}
+  .gallery .side{grid-template-rows:none;grid-template-columns:1fr 1fr}
+  .card{flex:0 0 78%}
+  .arrow{display:none}
+}

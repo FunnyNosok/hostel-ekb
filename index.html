@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Хостелы Екатеринбурга — недорогое жильё посуточно</title>
+  <meta name="description" content="Недорогие хостелы в Екатеринбурге. Бронирование по телефону.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">Хостелы <span>ЕКБ</span></div>
+      <a class="phone-btn" data-phone="display" href="#">📞</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Хостелы Екатеринбурга</h1>
+    <p>Чистые и недорогие места посуточно и на длительный срок. Бронирование — просто позвоните.</p>
+  </section>
+
+  <!-- Лента карточек (заполняется из js/data.js) -->
+  <div class="carousel-wrap">
+    <button class="arrow prev" onclick="scrollCarousel(-1)" aria-label="Назад">‹</button>
+    <div class="carousel" id="carousel"></div>
+    <button class="arrow next" onclick="scrollCarousel(1)" aria-label="Вперёд">›</button>
+  </div>
+
+  <div class="more-wrap">
+    <button class="more-btn" onclick="scrollToAll()">Посмотреть больше ↓</button>
+  </div>
+
+  <!-- Полный список (заполняется из js/data.js) -->
+  <section class="list-section" id="all">
+    <h2>Наши хостелы</h2>
+    <div id="hostel-list"></div>
+  </section>
+
+  <footer>
+    <div>Бронирование только по телефону:</div>
+    <a class="phone-big" data-phone="display" href="#"></a>
+    <div data-work-hours></div>
+    <small>© 2026 Хостелы ЕКБ · Екатеринбург</small>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
