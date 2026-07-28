@@ -3,14 +3,16 @@
  * при изменении телефона, цен или списка хостелов.
  */
 
-const SITE = {
+/* ---------- Значения по умолчанию (fallback) ---------- */
+
+const SITE_DEFAULTS = {
   phone: '+79126922068',
   phoneDisplay: '+7 (912) 692-20-68',
   workHours: 'Звоните ежедневно с 8:00 до 22:00',
   city: 'Екатеринбург',
 };
 
-const HOSTELS = [
+const HOSTELS_DEFAULTS = [
   {
     id: 'krasnoflottsev',
     name: 'Хостел «Краснофлотцев»',
@@ -54,3 +56,17 @@ const HOSTELS = [
     ],
   },
 ];
+
+/* ---------- Загрузка из localStorage (если админка сохраняла данные) ---------- */
+
+function _loadFromStorage(key, defaults) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : defaults;
+  } catch {
+    return defaults;
+  }
+}
+
+var SITE = _loadFromStorage('hostel_site', SITE_DEFAULTS);
+var HOSTELS = _loadFromStorage('hostels_data', HOSTELS_DEFAULTS);
