@@ -273,6 +273,39 @@ body {
 }
 .empty-state p { margin-bottom: 16px; }
 
+/* ---------- Login ---------- */
+
+.login-screen {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 200; padding: 20px;
+}
+.login-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 40px rgba(0,0,0,.12);
+  padding: 40px 36px;
+  width: 100%; max-width: 380px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.login-box h2 {
+  font-size: 1.3rem; font-weight: 800; text-align: center; margin-bottom: 4px;
+}
+.login-error {
+  display: none;
+  background: #fee; color: #c33; border-radius: 8px;
+  padding: 8px 14px; font-size: .85rem; font-weight: 600;
+  text-align: center;
+}
+.login-error.visible { display: block; }
+.btn-full { width: 100%; }
+.login-back {
+  text-align: center; font-size: .85rem; color: var(--gray);
+  text-decoration: none; margin-top: 4px;
+}
+.login-back:hover { color: var(--accent); }
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 640px) {

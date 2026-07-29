@@ -5,6 +5,54 @@
 
 const STORAGE_KEY_SITE = 'hostel_site';
 const STORAGE_KEY_HOSTELS = 'hostels_data';
+const STORAGE_KEY_AUTH = 'hostel_admin_auth';
+const ADMIN_LOGIN = 'admin';
+const ADMIN_PASS = 'hostel2026';
+
+/* ---------- Auth ---------- */
+
+function isLoggedIn() {
+  return sessionStorage.getItem(STORAGE_KEY_AUTH) === '1';
+}
+
+function showLogin() {
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('admin-content').style.display = 'none';
+}
+
+function showAdmin() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('admin-content').style.display = '';
+}
+
+document.getElementById('login-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const user = document.getElementById('login-user').value.trim();
+  const pass = document.getElementById('login-pass').value;
+  const err = document.getElementById('login-error');
+
+  if (user === ADMIN_LOGIN && pass === ADMIN_PASS) {
+    sessionStorage.setItem(STORAGE_KEY_AUTH, '1');
+    err.classList.remove('visible');
+    showAdmin();
+    renderSiteSettings();
+    renderHostelCards();
+    addResetButton();
+  } else {
+    err.classList.add('visible');
+    document.getElementById('login-pass').value = '';
+    document.getElementById('login-pass').focus();
+  }
+});
+
+if (isLoggedIn()) {
+  showAdmin();
+  renderSiteSettings();
+  renderHostelCards();
+  addResetButton();
+} else {
+  showLogin();
+}
 
 /* ---------- localStorage helpers ---------- */
 
@@ -344,9 +392,3 @@ function addResetButton() {
     e.target.value = '';
   });
 }
-
-/* ---------- Init ---------- */
-
-renderSiteSettings();
-renderHostelCards();
-addResetButton();

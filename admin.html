@@ -8,6 +8,27 @@
 </head>
 <body>
 
+  <!-- Экран входа -->
+  <div class="login-screen" id="login-screen">
+    <form class="login-box" id="login-form">
+      <h2>Вход в админ-панель</h2>
+      <div class="field">
+        <label for="login-user">Логин</label>
+        <input type="text" id="login-user" required autofocus>
+      </div>
+      <div class="field">
+        <label for="login-pass">Пароль</label>
+        <input type="password" id="login-pass" required>
+      </div>
+      <div class="login-error" id="login-error">Неверный логин или пароль</div>
+      <button type="submit" class="btn btn-primary btn-full">Войти</button>
+      <a href="index.html" class="login-back">← Вернуться на сайт</a>
+    </form>
+  </div>
+
+  <!-- Основной контент (скрыт до входа) -->
+  <div id="admin-content" style="display:none">
+
   <header class="admin-header">
     <div class="header-inner">
       <a href="index.html" class="logo">Хостелы <span>ЕКБ</span></a>
@@ -54,6 +75,8 @@
     </section>
 
   </main>
+
+  </div><!-- /admin-content -->
 
   <!-- Модалка редактирования хостела -->
   <div class="modal-overlay" id="modal">
