@@ -3,47 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Хостелы Екатеринбурга — недорогое жильё посуточно</title>
-  <meta name="description" content="Недорогие хостелы в Екатеринбурге. Бронирование по телефону.">
+  <title>Хостелы Екатеринбурга — койко-место 217 ₽ в сутки</title>
+  <meta name="description" content="Три хостела в Орджоникидзевском районе Екатеринбурга: койко-место — 217 ₽ в сутки, отдельная комната — 1300 ₽ в сутки. Бронирование по телефону, без предоплаты.">
+  <meta name="theme-color" content="#eef0ec">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
   <header>
     <div class="header-inner">
-      <div class="logo">Хостелы <span>ЕКБ</span></div>
-      <a class="phone-btn" data-phone="display" href="#">📞</a>
+      <a class="logo" href="#top" style="text-decoration:none;color:inherit">
+        Хостелы ЕКБ
+        <small data-district></small>
+      </a>
+      <div class="header-phone">
+        <a class="num" data-phone="display" href="#"></a>
+        <a class="btn btn-sm" data-phone="link" href="#">Позвонить</a>
+      </div>
     </div>
   </header>
 
-  <section class="hero">
-    <h1>Хостелы Екатеринбурга</h1>
-    <p>Чистые и недорогие места посуточно и на длительный срок. Бронирование — просто позвоните.</p>
-  </section>
+  <main id="top">
 
-  <!-- Лента карточек (заполняется из js/data.js) -->
-  <div class="carousel-wrap">
-    <button class="arrow prev" onclick="scrollCarousel(-1)" aria-label="Назад">‹</button>
-    <div class="carousel" id="carousel"></div>
-    <button class="arrow next" onclick="scrollCarousel(1)" aria-label="Вперёд">›</button>
-  </div>
+    <!-- Первый экран -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow" data-district-line></div>
+          <h1>Койко-место<br>в Екатеринбурге<br><em>217 ₽ в сутки</em></h1>
+          <p class="lead">
+            Три адреса в Орджоникидзевском районе — рядом Уралмаш и Эльмаш.
+            Место в общем номере — 217 ₽ в сутки. Нужна своя комната — 1300 ₽ в сутки
+            за комнату целиком. Никаких форм и предоплаты: позвоните, и мы скажем,
+            где есть свободные места.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" data-phone="link" href="#">Позвонить и забронировать</a>
+            <a class="btn btn-ghost" href="#addresses">Посмотреть адреса</a>
+          </div>
+        </div>
+        <figure class="hero-shot" data-hero-shot></figure>
+      </div>
+    </section>
 
-  <div class="more-wrap">
-    <button class="more-btn" onclick="scrollToAll()">Посмотреть больше ↓</button>
-  </div>
+    <!-- Полоса фактов -->
+    <section class="facts">
+      <div class="facts-inner" id="facts"></div>
+    </section>
 
-  <!-- Полный список (заполняется из js/data.js) -->
-  <section class="list-section" id="all">
-    <h2>Все наши хостелы</h2>
-    <div id="hostel-list"></div>
-  </section>
+    <!-- Три адреса: линия-навигация -->
+    <section class="route wrap" id="addresses">
+      <div class="section-head">
+        <h2>Три адреса</h2>
+        <span class="eyebrow">Выберите улицу — покажем комнаты и цену</span>
+      </div>
+      <nav class="route-line" id="route" aria-label="Наши хостелы"></nav>
+    </section>
+
+    <!-- Карточки -->
+    <section class="cards wrap">
+      <div class="card-grid" id="cards"></div>
+    </section>
+
+    <!-- Подробно по каждому хостелу -->
+    <section class="list-section wrap" id="hostels">
+      <div class="section-head">
+        <h2>Что внутри</h2>
+        <span class="eyebrow">Фотографии сделаны в этих комнатах, без ретуши</span>
+      </div>
+      <div id="hostel-list"></div>
+    </section>
+
+    <!-- Как заселиться -->
+    <section class="steps wrap">
+      <div class="section-head">
+        <h2>Как заселиться</h2>
+        <span class="eyebrow">Три шага, всё решается по телефону</span>
+      </div>
+      <div class="steps-grid" id="steps"></div>
+    </section>
+
+    <!-- Условия -->
+    <section class="rules wrap">
+      <div class="section-head">
+        <h2>Условия проживания</h2>
+        <span class="eyebrow">Коротко и без мелкого шрифта</span>
+      </div>
+      <dl class="rules-grid" id="rules"></dl>
+    </section>
+
+  </main>
 
   <footer>
-    <div>Бронирование только по телефону:</div>
-    <a class="phone-big" data-phone="display" href="#"></a>
-    <div data-work-hours></div>
-    <small>© 2026 Хостелы ЕКБ · Екатеринбург</small>
+    <div class="wrap footer-grid">
+      <div>
+        <div class="eyebrow">Бронирование только по телефону</div>
+        <a class="phone-big" data-phone="display" href="#"></a>
+        <div class="hours" data-work-hours></div>
+      </div>
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px">Адреса</div>
+        <div class="footer-addr" id="footer-addr"></div>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <span>© 2026 Хостелы ЕКБ</span>
+      <span data-city-line></span>
+    </div>
   </footer>
+
+  <!-- Мобильная кнопка звонка -->
+  <div class="call-bar">
+    <a class="btn" data-phone="display" data-prefix="Позвонить · " href="#"></a>
+  </div>
+
+  <!-- Просмотр фотографий -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
+    <img id="lb-img" alt="">
+    <button class="lb-btn lb-close" id="lb-close" aria-label="Закрыть">✕</button>
+    <button class="lb-btn lb-prev" id="lb-prev" aria-label="Предыдущее фото">‹</button>
+    <button class="lb-btn lb-next" id="lb-next" aria-label="Следующее фото">›</button>
+    <div class="lb-counter" id="lb-counter"></div>
+  </div>
 
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
