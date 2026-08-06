@@ -79,6 +79,7 @@ const HOSTELS_DEFAULTS = [
     ],
     features: ['Постельное бельё', 'Шкаф для вещей', 'Письменный стол', 'Телевизор', 'Балкон', 'Тихий двор'],
     photos: [
+      'assets/img/krasnoflotcev/kf-20.jpg',
       'assets/img/krasnoflotcev/kf-07.jpg',
       'assets/img/krasnoflotcev/kf-09.jpg',
       'assets/img/krasnoflotcev/kf-04.jpg',
@@ -162,7 +163,7 @@ const HOSTELS_DEFAULTS = [
 
 /* Фото и подпись для первого экрана */
 const HERO_SHOT = {
-  src: 'assets/img/krasnoflotcev/kf-07.jpg',
+  src: 'assets/img/krasnoflotcev/kf-20.jpg',
   street: 'ул. Краснофлотцев',
   note: 'комната на 3 места',
 };
