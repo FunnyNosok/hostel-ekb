@@ -331,6 +331,9 @@ footer .hours{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;marg
   display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;color:#7f8d88;text-transform:uppercase;
 }
+.footer-bottom a{color:#7f8d88;text-decoration:none}
+.footer-bottom a:hover{color:#8fd2bd}
+.footer-admin{opacity:.55}
 
 /* ---------- Мобильная кнопка звонка ---------- */
 

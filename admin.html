@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админ-панель — Хостелы ЕКБ</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- Экран входа -->
+  <div class="login-screen" id="login-screen">
+    <form class="login-box" id="login-form">
+      <h2>Вход в админ-панель</h2>
+      <div class="field">
+        <label for="login-user">Логин</label>
+        <input type="text" id="login-user" required autofocus>
+      </div>
+      <div class="field">
+        <label for="login-pass">Пароль</label>
+        <input type="password" id="login-pass" required>
+      </div>
+      <div class="login-error" id="login-error">Неверный логин или пароль</div>
+      <button type="submit" class="btn btn-primary btn-full">Войти</button>
+      <a href="index.html" class="login-back">← Вернуться на сайт</a>
+    </form>
+  </div>
+
+  <!-- Основной контент (скрыт до входа) -->
+  <div id="admin-content" style="display:none">
+
+  <header class="admin-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Хостелы <span>ЕКБ</span></a>
+      <h1>Админ-панель</h1>
+      <a href="index.html" class="back-link">← На сайт</a>
+    </div>
+  </header>
+
+  <main class="admin-main">
+
+    <!-- Настройки сайта -->
+    <section class="panel">
+      <h2 class="panel-title">Настройки сайта</h2>
+      <form id="site-settings-form" class="form-grid">
+        <div class="field">
+          <label for="site-phone">Телефон (для звонка)</label>
+          <input type="tel" id="site-phone" placeholder="+79126922068">
+        </div>
+        <div class="field">
+          <label for="site-phoneDisplay">Телефон (отображение)</label>
+          <input type="text" id="site-phoneDisplay" placeholder="+7 (912) 692-20-68">
+        </div>
+        <div class="field">
+          <label for="site-workHours">Часы работы</label>
+          <input type="text" id="site-workHours" placeholder="Звоните ежедневно с 8:00 до 22:00">
+        </div>
+        <div class="field">
+          <label for="site-city">Город</label>
+          <input type="text" id="site-city" placeholder="Екатеринбург">
+        </div>
+        <div class="field-actions">
+          <button type="submit" class="btn btn-primary">Сохранить настройки</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Список хостелов -->
+    <section class="panel">
+      <div class="panel-header">
+        <h2 class="panel-title">Хостелы</h2>
+        <button class="btn btn-accent" id="add-hostel-btn">+ Добавить хостел</button>
+      </div>
+      <div id="hostel-cards" class="hostel-cards"></div>
+    </section>
+
+  </main>
+
+  </div><!-- /admin-content -->
+
+  <!-- Модалка редактирования хостела -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-title">Новый хостел</h3>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <form id="hostel-form" class="form-grid">
+        <input type="hidden" id="h-index">
+
+        <div class="field">
+          <label for="h-id">ID (латиница, уникальный)</label>
+          <input type="text" id="h-id" placeholder="krasnoflottsev" required>
+        </div>
+        <div class="field">
+          <label for="h-name">Название</label>
+          <input type="text" id="h-name" placeholder="Хостел «Краснофлотцев»" required>
+        </div>
+        <div class="field">
+          <label for="h-address">Адрес</label>
+          <input type="text" id="h-address" placeholder="ул. Краснофлотцев, 9" required>
+        </div>
+        <div class="field">
+          <label for="h-price">Цена (₽/сутки, 0 = «звоните»)</label>
+          <input type="number" id="h-price" min="0" step="1" placeholder="0">
+        </div>
+        <div class="field full-width">
+          <label for="h-description">Описание</label>
+          <textarea id="h-description" rows="3" placeholder="Чистый хостел в Екатеринбурге..."></textarea>
+        </div>
+        <div class="field full-width">
+          <label for="h-features">Фичи (через запятую)</label>
+          <input type="text" id="h-features" placeholder="Кухня, Постельное бельё включено">
+        </div>
+
+        <!-- Фото -->
+        <div class="field full-width">
+          <label>Фото (до 3 шт.)</label>
+          <div class="photo-inputs">
+            <div class="photo-field">
+              <span class="photo-label">Главное фото</span>
+              <input type="text" id="h-photo0" placeholder="Путь или URL" class="photo-input">
+              <img id="h-photo0-preview" class="photo-preview" src="" alt="">
+            </div>
+            <div class="photo-field">
+              <span class="photo-label">Фото 2</span>
+              <input type="text" id="h-photo1" placeholder="Путь или URL" class="photo-input">
+              <img id="h-photo1-preview" class="photo-preview" src="" alt="">
+            </div>
+            <div class="photo-field">
+              <span class="photo-label">Фото 3</span>
+              <input type="text" id="h-photo2" placeholder="Путь или URL" class="photo-input">
+              <img id="h-photo2-preview" class="photo-preview" src="" alt="">
+            </div>
+          </div>
+          <div class="photo-upload-row">
+            <label class="btn btn-small btn-outline upload-btn">
+              Загрузить файл
+              <input type="file" accept="image/*" id="h-photo-file" hidden>
+            </label>
+            <select id="h-photo-target">
+              <option value="0">Главное фото</option>
+              <option value="1">Фото 2</option>
+              <option value="2">Фото 3</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-actions modal-actions">
+          <button type="button" class="btn btn-outline" id="modal-cancel">Отмена</button>
+          <button type="submit" class="btn btn-primary">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Уведомление -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/admin.js"></script>
+
+</body>
+</html>

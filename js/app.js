@@ -79,7 +79,7 @@ function renderRoute() {
     const stop = el('a', 'route-stop');
     stop.href = '#' + h.id;
     stop.append(
-      el('div', 'street', h.street),
+      el('div', 'street', h.street || h.name),
       el('div', 'meta', priceShort(h.price)),
     );
     box.append(stop);
@@ -92,17 +92,18 @@ function renderCard(hostel) {
   const card = el('button', 'card reveal');
   card.type = 'button';
 
+  const photos = hostel.photos || [];
   const shot = el('div', 'card-shot');
   shot.append(
-    img(hostel.photos[0], hostel.name),
-    el('span', 'card-count', `${hostel.photos.length} фото`),
+    img(photos[0], hostel.name),
+    el('span', 'card-count', `${photos.length} фото`),
   );
 
   const body = el('div', 'card-body');
   body.append(
-    el('div', 'eyebrow', hostel.area),
-    el('h3', '', 'ул. ' + hostel.street),
-    el('div', 'type', hostel.type),
+    el('div', 'eyebrow', hostel.area || SITE.district),
+    el('h3', '', hostel.street ? 'ул. ' + hostel.street : hostel.name),
+    el('div', 'type', hostel.type || ''),
   );
 
   const foot = el('div', 'card-foot');
@@ -175,7 +176,7 @@ function renderHostel(hostel) {
   info.append(el('p', '', hostel.description));
 
   const specs = el('dl', 'specs');
-  hostel.specs.forEach((s) => {
+  (hostel.specs || []).forEach((s) => {
     const row = el('div');
     row.append(el('dt', '', s.dt), el('dd', '', s.dd));
     specs.append(row);
@@ -183,7 +184,7 @@ function renderHostel(hostel) {
   info.append(specs);
 
   const tags = el('div', 'tags');
-  hostel.features.forEach((f) => tags.append(el('span', '', f)));
+  (hostel.features || []).forEach((f) => tags.append(el('span', '', f)));
   info.append(tags);
 
   const book = el('div', 'book');
